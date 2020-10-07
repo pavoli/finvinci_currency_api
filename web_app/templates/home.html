@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Currency Converter App</title>
+  </head>
+  <body>
+    <div style="margin: auto; width: 500px;">
+        <form action="" method="post" style="text-align: center;">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                From {{ form.first_currency }}
+            </div>
+            <div class="form-group">
+                To {{ form.second_currency }}
+            </div>
+            <div class="form-group">
+                {{ form.quantity.label }}
+                {{ form.quantity }}
+                {% for error in form.quantity.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.submit }}
+            </div>
+        </form>
+    </div>
+    <div style="margin-right: 400px; text-align: right;">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <span style="color: red;">{{ messages[0] }}</span>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    {% if data %}
+    <div id="results">
+        <h5>RESULTS</h5>
+        <div>
+            <div>
+                <span style="background-color: yellow;">{{ data.qty }} {{ data.first_currency }} = {{ data.result }} {{ data.second_currency }}</span>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+  </body>
+</html>

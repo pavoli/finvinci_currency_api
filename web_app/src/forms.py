@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-__author__ = 'p.olifer'
+__author__ = 'p2lly'
 __version__ = '1.0'
 
 
@@ -11,17 +10,13 @@ from wtforms import (
     SubmitField
 )
 from wtforms.validators import DataRequired
+from web_app.models import currency_list
 
 
 class InputDataForms(FlaskForm):
-    currency_list = [
-        ('USD', 'US Dollar'),
-        ('EUR', 'Euro'),
-        ('PLN', 'Polish zloty'),
-        ('CZK', 'Czech crown'),
-    ]
-
-    first_currency = SelectField('first', choices=currency_list, validators=[DataRequired()])
-    second_currency = SelectField('second', choices=currency_list, validators=[DataRequired()])
+    first_currency = SelectField('first', choices=currency_list,
+                                 validators=[DataRequired()])
+    second_currency = SelectField('second', choices=currency_list,
+                                  validators=[DataRequired()])
     quantity = FloatField('How much to convert?', validators=[DataRequired()])
     submit = SubmitField('Convert')

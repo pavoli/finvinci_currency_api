@@ -15,7 +15,8 @@ $ virtualvenv venv
 * Activate VENV
 ```bash
 $ cd venv
-$ cd Scripts/activate
+$ cd Scripts
+$ cd activate
 $ cd ..
 $ cd ..
 $ pip install -r requirements.txt

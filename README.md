@@ -9,19 +9,15 @@
 * Install python version 3.7 or later [HERE](https://www.python.org/downloads/)
 * Create an [VIRTUAL ENV](https://docs.python.org/3/library/venv.html)
 ```bash
-$ mkdir venv
-$ python3 -m venv /path/to/new/virtual/environment
+$ cd path/to/project
+$ virtualvenv venv
 ```
 * Activate VENV
 ```bash
-$ cd  /path/to/new/virtual/environment
-$ cd Scripts/
-$ source activate
-$ pip install -r requirements.txt
-```
---or--
-* Install into local PYTHON PACKAGE
-```bash
+$ cd venv
+$ cd Scripts/activate
+$ cd ..
+$ cd ..
 $ pip install -r requirements.txt
 ```
 

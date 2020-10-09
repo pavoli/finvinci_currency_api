@@ -21,13 +21,11 @@ class Rates(db.Model):
     conversion_currency = db.Column(db.String(3))
     rate = db.Column(db.Float)
 
-    def __init__(self, base, conversion, rate):
+    def __init__(self, base: str, conversion: str, rate: float) -> None:
         self.base_currency = base
         self.conversion_currency = conversion
         self.rate = rate
 
-
     def __repr__(self):
-        return 'Base rate: {0}    Conversion rate: {1}     Rate: {2}'.format(
+        return 'Base rate: {0}|Conversion rate: {1}|Rate: {2}'.format(
             self.base_currency, self.conversion_currency, self.rate)
-

@@ -12,7 +12,9 @@ from config import (
     db_name,
 )
 from web_app import db
-from web_app.src.currency import first_fill_rates
+from web_app.src.currency import (
+    first_fill_rates,
+)
 
 if not os.path.isfile(os.path.join(basedir, db_name)):
     db.create_all()

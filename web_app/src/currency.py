@@ -7,7 +7,7 @@ from web_app import db
 from web_app.models import currency_list
 
 
-def get_currency_list(base_currency):
+def get_currency_list(base_currency: str) -> dict:
     url = f'https://api.exchangeratesapi.io/latest?base={base_currency}'
     response = requests.get(url)
     rates = response.json()
@@ -15,13 +15,13 @@ def get_currency_list(base_currency):
     return rates['rates']
 
 
-def insert_rate(base, conversion, rate):
+def insert_rate(base: str, conversion: str, rate: float) -> None:
     r = Rates(base, conversion, rate)
     db.session.add(r)
     db.session.commit()
 
 
-def first_fill_rates():
+def first_fill_rates() -> None:
     currency = [i[0] for i in currency_list]
     for c in currency:
         data = get_currency_list(c)
@@ -38,14 +38,14 @@ def show_all_rates():
         print(r)
 
 
-def get_currency_info(base, conversion):
+def get_currency_info(base: str, conversion: str) -> Rates:
     rate = Rates.query.filter_by(base_currency=base,
                                  conversion_currency=conversion).first()
 
     return rate
 
 
-def refresh_rate(base, conversion, new_rate):
+def refresh_rate(base: str, conversion: str, new_rate: float) -> None:
     currency = get_currency_info(base=base, conversion=conversion)
 
     if currency:
@@ -54,7 +54,7 @@ def refresh_rate(base, conversion, new_rate):
         db.session.commit()
 
 
-async def refresh_rates_schd():
+def refresh_rates_scheduled() -> None:
     currency = [i[0] for i in currency_list]
     for c in currency:
         data = get_currency_list(c)
@@ -67,10 +67,10 @@ async def refresh_rates_schd():
 if __name__ == '__main__':
     # get_currency_list('USD')
     # show_all_rates()
-    # get_currency_info(base='USD', conversion='EUR')
+    # print(get_currency_info(base='USD', conversion='EUR'))
     # refresh_rate(base='USD', conversion='EUR', new_rate=2.0)
     # refresh_rate(base='EUR', conversion='PLN', new_rate=10.0)
-    # get_currency_info(base='USD', conversion='EUR')
-    # get_currency_info(base='EUR', conversion='PLN')
-    # refresh_rates_schd()
+    # print(get_currency_info(base='USD', conversion='EUR'))
+    # print(get_currency_info(base='EUR', conversion='PLN'))
+    # refresh_rates_scheduled()
     pass

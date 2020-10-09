@@ -26,6 +26,10 @@ $ pip install -r requirements.txt
 ```bash
 $ python db_create.py
 ```
+## RUN TEST
+```bash
+$ python py.test
+```
 
 ## START SERVER
 ```bash

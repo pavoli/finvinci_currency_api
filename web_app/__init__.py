@@ -2,11 +2,6 @@
 __author__ = 'p2lly'
 
 
-'''
-
-'''
-
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
